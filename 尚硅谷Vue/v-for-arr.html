@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <!--  引入Vue  -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+    <!--准备好一个容器-->
+    <div id="root">
+        <h2>人员列表</h2>
+        <ul>
+            <!-- v-for指令 p是形参,可以在li体里面使用 persons是数据池 -->
+            <!-- v-for="(p,index) in persons" 可以写两个形参，第一个是遍历的每一项对象，第二个是对象的索引值 -->
+
+            <!-- 第一种写法：-->
+            <!--
+            <li v-for="(p,index) in persons" :key="p.id">
+                {{p.name}}-{{p.age}}
+            </li> -->
+
+            <!-- 第二种写法： -->
+            <!-- v-for="(p,index) in persons" 与 v-for="(p,index) of persons" 等价 -->
+            <!-- <li v-for="(p,index) of persons" :key="index"> -->
+            <li v-for="(p,index) in persons" :key="index">
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止vue在启动时生成生产提示。
+    var vm = new Vue({
+        el: '#root',
+        data: {
+            persons: [{
+                id: '001',
+                name: '张三',
+                age: 18
+            }, {
+                id: '002',
+                name: '李四',
+                age: 19
+            }, {
+                id: '003',
+                name: '王五',
+                age: 20
+            }, ]
+        }
+    })
+</script>
+
+</html>
